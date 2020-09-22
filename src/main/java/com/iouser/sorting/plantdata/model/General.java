@@ -8,9 +8,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "general")
 public class General {
-    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Id
     @JoinColumn(name = "plants")
     private String plants;
     @JoinColumn(name = "family")
@@ -25,4 +25,11 @@ public class General {
     private String shotStyle;
     @JoinColumn(name = "acquisition")
     private String acquisition;
+
+    public General() {
+    }
+
+    public General(String plants) {
+        this.plants = plants;
+    }
 }

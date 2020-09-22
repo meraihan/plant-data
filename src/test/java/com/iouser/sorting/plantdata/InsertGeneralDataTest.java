@@ -27,7 +27,7 @@ public class InsertGeneralDataTest {
     public static final String CSV_FILE_PATH = "./Plant Data - General.csv";
 
     @Test
-    @Ignore
+//    @Ignore
     public void readWriteFromCsv() throws Exception {
         List<General> generals = new ArrayList<>();
         FileInputStream fis = new FileInputStream(CSV_FILE_PATH);
