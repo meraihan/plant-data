@@ -1,12 +1,13 @@
 package com.iouser.sorting.plantdata.model;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "special")
-public class Special {
+@Table(name = "damage")
+public class Damage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

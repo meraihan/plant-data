@@ -158,7 +158,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Plant - General</h1>
+                <h1 class="h3 mb-2 text-gray-800">Plant - Damage</h1>
 
 
                 <!-- DataTales Example -->
@@ -173,25 +173,53 @@
                                 <tr>
                                     <th>S/L</th>
                                     <th>Plants</th>
-                                    <th>Family</th>
-                                    <th>Usage</th>
-                                    <th>Activation Range</th>
-                                    <th>Attack Direction</th>
-                                    <th>Shot Style</th>
-                                    <th>Acquisition</th>
+                                    <th>Level1</th>
+                                    <th>level2</th>
+                                    <th>level3</th>
+                                    <th>Level4</th>
+                                    <th>Level5</th>
+                                    <th>Level6</th>
+                                    <th>Level7</th>
+                                    <th>Level8</th>
+                                    <th>Level9</th>
+                                    <th>Level10</th>
+                                    <th>Level11</th>
+                                    <th>Level12</th>
+                                    <th>Level13</th>
+                                    <th>Level14</th>
+                                    <th>Level15</th>
+                                    <th>Level16</th>
+                                    <th>Level17</th>
+                                    <th>Level18</th>
+                                    <th>Level19</th>
+                                    <th>Level20</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="data,iterationStatus : ${generals}">
+                                <tr th:each="data,iterationStatus : ${damages}">
                                     <td th:text="${iterationStatus.count}">1</td>
-                                    <td th:text="${data.plants}"></td>
-                                    <td th:text="${data.family}"></td>
-                                    <td th:text="${data.usage}"></td>
-                                    <td th:text="${data.activationRange}"></td>
-                                    <td th:text="${data.attackDirection}"></td>
-                                    <td th:text="${data.shotStyle}"></td>
-                                    <td th:text="${data.acquisition}"></td>
+                                    <td th:text="${data.plants.plants}"></td>
+                                    <td th:text="${data.level1}"></td>
+                                    <td th:text="${data.level2}"></td>
+                                    <td th:text="${data.level3}"></td>
+                                    <td th:text="${data.level4}"></td>
+                                    <td th:text="${data.level5}"></td>
+                                    <td th:text="${data.level6}"></td>
+                                    <td th:text="${data.level7}"></td>
+                                    <td th:text="${data.level8}"></td>
+                                    <td th:text="${data.level9}"></td>
+                                    <td th:text="${data.level10}"></td>
+                                    <td th:text="${data.level11}"></td>
+                                    <td th:text="${data.level12}"></td>
+                                    <td th:text="${data.level13}"></td>
+                                    <td th:text="${data.level14}"></td>
+                                    <td th:text="${data.level15}"></td>
+                                    <td th:text="${data.level16}"></td>
+                                    <td th:text="${data.level17}"></td>
+                                    <td th:text="${data.level18}"></td>
+                                    <td th:text="${data.level19}"></td>
+                                    <td th:text="${data.level20}"></td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "general")
 public class General {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Id
     @JoinColumn(name = "plants")

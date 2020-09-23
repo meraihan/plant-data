@@ -58,14 +58,28 @@
         </div>
 
         <li class="nav-item">
-            <a class="nav-link" href="/general-data/list">
-                <i class="fas fa-fw fa-table"></i>
-                <span>General</span></a>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>General</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">general data:</h6>
+                    <a class="collapse-item" href="/general-data/list">View</a>
+                    <a class="collapse-item" href="/general-data/add">Add</a>
+                </div>
+            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/special-data/list">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Special</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/damage-data/list">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Damage</span></a>
         </li>
 
         <!-- Divider -->
@@ -145,7 +159,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Plant - General</h1>
+                <h1 class="h3 mb-2 text-gray-800">Plant - Special</h1>
 
 
                 <!-- DataTales Example -->
