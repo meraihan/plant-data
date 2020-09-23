@@ -40,4 +40,23 @@ public class GeneralDataController {
         }
     }
 
+    @GetMapping("/update")
+    public String update(@ModelAttribute("general") General general, Model model) {
+        General general1 = generalRepository.findByPlants(general.getPlants()).get();
+        model.addAttribute("findGeneralDataById", general1);
+        return "data/gen_update";
+    }
+
+    @PostMapping("/update")
+    public String edit(@ModelAttribute("general") General general, final RedirectAttributes redirectAttributes) {
+       if (generalRepository.save(general)!=null) {
+                redirectAttributes.addFlashAttribute("success", "general data updated successfully");
+                return "redirect:/general-data/list";
+            } else {
+                redirectAttributes.addFlashAttribute("error", "general data update failed");
+                return "redirect:update?plants=" + general.getPlants();
+            }
+
+    }
+
 }

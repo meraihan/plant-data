@@ -6,11 +6,12 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "general")
+@Table(name = "general", uniqueConstraints={@UniqueConstraint(columnNames = {"plants"}), @UniqueConstraint(columnNames = {"id"})})
 public class General {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id" ,unique=true, nullable = false)
     private Long id;
     @Id
+    @Column(name="plants", unique=true, nullable = false)
     @JoinColumn(name = "plants")
     private String plants;
     @JoinColumn(name = "family")

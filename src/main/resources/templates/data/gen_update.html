@@ -2,24 +2,21 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Plant Data | General</title>
+    <title>Plants General: Add</title>
 
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -32,11 +29,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Plants</div>
+            <div class="sidebar-brand-text mx-3">PLANTS</div>
         </a>
 
         <!-- Divider -->
@@ -102,33 +99,24 @@
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
-                <form class="form-inline">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </form>
-
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
-
-
-
-
-                    <!-- Nav Item - Messages -->
-
-
                     <div class="topbar-divider d-none d-sm-block"></div>
 
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">iouser</span>
                             <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                         </a>
                         <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
@@ -142,7 +130,7 @@
                                 Activity Log
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
@@ -156,53 +144,68 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Plant - General</h1>
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Plants Data - General</h1>
+                </div>
+                <!-- Content Row -->
+                <div class="row">
+                    <!-- Content Row -->
 
-
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Sorting the data</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>S/L</th>
-                                    <th>Plants</th>
-                                    <th>Family</th>
-                                    <th>Usage</th>
-                                    <th>Activation Range</th>
-                                    <th>Attack Direction</th>
-                                    <th>Shot Style</th>
-                                    <th>Acquisition</th>
-                                    <th>Action</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="data,iterationStatus : ${generals}">
-                                    <td th:text="${iterationStatus.count}">1</td>
-                                    <td th:text="${data.plants}"></td>
-                                    <td th:text="${data.family}"></td>
-                                    <td th:text="${data.usage}"></td>
-                                    <td th:text="${data.activationRange}"></td>
-                                    <td th:text="${data.attackDirection}"></td>
-                                    <td th:text="${data.shotStyle}"></td>
-                                    <td th:text="${data.acquisition}"></td>
-                                    <td class="center">&nbsp;&nbsp;&nbsp;
-                                        <a th:href="@{/general-data/update(plants=${data.plants})}"><i
-                                                class="fa fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                    <div class="card shadow col-lg-8">
+                        <div class="card-header py-12">
+                            <h6 class="m-0 font-weight-bold text-primary">UPDATE</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="dataTable_filter" class="dataTables_filter" style="float: right;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form th:action="@{/general-data/update}" method="post" th:object="${findGeneralDataById}">
+                                        <input type="hidden" class="form-control" th:value="${findGeneralDataById.id}"
+                                               name="id"/>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4">Plants </label>
+                                            <input class="form-control col-lg-5" th:field="*{plants}" placeholder="Plants name here..." readonly/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4">Family </label>
+                                            <input class="form-control col-lg-5" th:field="*{family}" placeholder="Family name here..." required/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4">Usage </label>
+                                            <input class="form-control col-lg-5" th:field="*{usage}" placeholder="Usage here..." required/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4">Activation Range </label>
+                                            <input class="form-control col-lg-5" th:field="*{activationRange}" placeholder="Activation Range here..." required/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4">Attack Direction </label>
+                                            <input class="form-control col-lg-5" th:field="*{attackDirection}" placeholder="Attack Direction here..." required/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4">Shot Style </label>
+                                            <input class="form-control col-lg-5" th:field="*{shotStyle}" placeholder="Shot Style here..." required/>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4">Acquisition </label>
+                                            <input class="form-control col-lg-5" th:field="*{acquisition}" placeholder="Acquisition here..." required/>
+                                        </div>
+                                        <button type="submit" id="btn_submit" class="btn btn-primary">Update</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Content Row -->
+
 
             </div>
             <!-- /.container-fluid -->
@@ -214,7 +217,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; iouser 2020</span>
+                    <span>Copyright &copy; iouser - 2020</span>
                 </div>
             </div>
         </footer>
@@ -232,11 +235,12 @@
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Want to Logout?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -260,13 +264,16 @@
 <!-- Custom scripts for all pages-->
 <script src="/js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/js/demo/datatables-demo.js"></script>
-
 </body>
+<style>
+    .form-control{
+        background-color: #eaecf4;
+    }
+    #btn_submit{
+        position: absolute;
+        right: 150px;
+        bottom: 15px;
+    }
+</style>
 
 </html>
