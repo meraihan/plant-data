@@ -6,9 +6,9 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "general", uniqueConstraints={@UniqueConstraint(columnNames = {"plants"}), @UniqueConstraint(columnNames = {"id"})})
+@Table(name = "general")
 public class General {
-    @Column(name = "id" ,unique=true, nullable = false)
+    @Column(name = "id", unique=true, nullable = false)
     private Long id;
     @Id
     @Column(name="plants", unique=true, nullable = false)
