@@ -1,6 +1,6 @@
 package com.iouser.sorting.plantdata;
 
-import com.iouser.sorting.plantdata.model.General;
+import com.iouser.sorting.plantdata.model.Plant;
 import com.iouser.sorting.plantdata.repository.GeneralRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
@@ -29,12 +29,12 @@ public class InsertGeneralDataTest {
     @Test
     @Ignore
     public void readWriteFromCsv() throws Exception {
-        List<General> generals = new ArrayList<>();
+        List<Plant> generals = new ArrayList<>();
         FileInputStream fis = new FileInputStream(CSV_FILE_PATH);
         generals = csvToTutorials(fis);
         generals.stream().forEach(general -> {
-            General saveGeneral = new General();
-            saveGeneral.setPlants(general.getPlants());
+            Plant saveGeneral = new Plant();
+            saveGeneral.setPlantName(general.getPlantName());
             saveGeneral.setFamily(general.getFamily());
             saveGeneral.setUsage(general.getUsage());
             saveGeneral.setActivationRange(general.getActivationRange());
@@ -47,18 +47,18 @@ public class InsertGeneralDataTest {
     }
 
 
-    public static List<General> csvToTutorials(FileInputStream is) {
+    public static List<Plant> csvToTutorials(FileInputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
              CSVParser csvParser = new CSVParser(fileReader,
                      CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
 
-            List<General> generals = new ArrayList<General>();
+            List<Plant> generals = new ArrayList<Plant>();
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
 
             for (CSVRecord csvRecord : csvRecords) {
-                General general = new General();
-                general.setPlants(csvRecord.get("Plants"));
+                Plant general = new Plant();
+                general.setPlantName(csvRecord.get("Plants"));
                 general.setFamily(csvRecord.get("Family"));
                 general.setUsage(csvRecord.get("Usage"));
                 general.setActivationRange(csvRecord.get("Activation Range"));

@@ -186,7 +186,7 @@
                                 <tbody>
                                 <tr th:each="data,iterationStatus : ${generals}">
                                     <td th:text="${iterationStatus.count}">1</td>
-                                    <td th:text="${data.plants}"></td>
+                                    <td th:text="${data.plantName}"></td>
                                     <td th:text="${data.family}"></td>
                                     <td th:text="${data.usage}"></td>
                                     <td th:text="${data.activationRange}"></td>
@@ -194,7 +194,7 @@
                                     <td th:text="${data.shotStyle}"></td>
                                     <td th:text="${data.acquisition}"></td>
                                     <td class="center">&nbsp;&nbsp;&nbsp;
-                                        <a th:href="@{/general-data/update(plants=${data.plants})}"><i
+                                        <a th:href="@{/general-data/update(plants=${data.plantName})}"><i
                                                 class="fa fa-edit"></i></a>
                                     </td>
                                 </tr>

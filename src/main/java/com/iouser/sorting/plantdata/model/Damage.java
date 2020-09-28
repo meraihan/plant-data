@@ -3,17 +3,18 @@ package com.iouser.sorting.plantdata.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "damage")
-public class Damage {
+public class Damage  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plants")
-    private General plants;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "plant_id", nullable = false)
+    private Plant plant;
     private String level1;
     private String level2;
     private String level3;

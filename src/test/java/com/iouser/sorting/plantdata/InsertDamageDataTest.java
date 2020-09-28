@@ -1,7 +1,7 @@
 package com.iouser.sorting.plantdata;
 
 import com.iouser.sorting.plantdata.model.Damage;
-import com.iouser.sorting.plantdata.model.General;
+import com.iouser.sorting.plantdata.model.Plant;
 import com.iouser.sorting.plantdata.repository.DamageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
@@ -39,7 +39,7 @@ public class InsertDamageDataTest {
         specials = csvToTutorials(fis);
         specials.stream().forEach(special -> {
             Damage saveDamage = new Damage();
-            saveDamage.setPlants(special.getPlants());
+//            saveDamage.setPlants(special.getPlants());
             saveDamage.setLevel1(special.getLevel1());
             saveDamage.setLevel2(special.getLevel2());
             saveDamage.setLevel3(special.getLevel3());
@@ -77,7 +77,7 @@ public class InsertDamageDataTest {
 
             for (CSVRecord csvRecord : csvRecords) {
                 Damage damage = new Damage();
-                damage.setPlants(new General(csvRecord.get("Plants")));
+//                damage.setPlants(new Plant(csvRecord.get("Plants")));
                 damage.setLevel1(csvRecord.get("Level 1"));
                 damage.setLevel2(csvRecord.get("Level 2"));
                 damage.setLevel3(csvRecord.get("Level 3"));

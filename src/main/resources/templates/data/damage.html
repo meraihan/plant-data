@@ -199,7 +199,7 @@
                                 <tbody>
                                 <tr th:each="data,iterationStatus : ${damages}">
                                     <td th:text="${iterationStatus.count}">1</td>
-                                    <td th:text="${data.plants.plants}"></td>
+                                    <td th:text="${data.plants.getPlantName}"></td>
                                     <td th:text="${data.level1}"></td>
                                     <td th:text="${data.level2}"></td>
                                     <td th:text="${data.level3}"></td>

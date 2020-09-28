@@ -1,6 +1,6 @@
 package com.iouser.sorting.plantdata;
 
-import com.iouser.sorting.plantdata.model.General;
+import com.iouser.sorting.plantdata.model.Plant;
 import com.iouser.sorting.plantdata.model.Special;
 import com.iouser.sorting.plantdata.repository.SpecialRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,7 @@ public class InsertSpecialDataTest {
         specials = csvToTutorials(fis);
         specials.stream().forEach(special -> {
             Special saveSpecial = new Special();
-            saveSpecial.setPlants(special.getPlants());
+//            saveSpecial.setPlants(special.getPlants());
             saveSpecial.setLevel1(special.getLevel1());
             saveSpecial.setLevel2(special.getLevel2());
             saveSpecial.setLevel3(special.getLevel3());
@@ -78,7 +78,7 @@ public class InsertSpecialDataTest {
 
             for (CSVRecord csvRecord : csvRecords) {
                 Special special = new Special();
-                special.setPlants(new General(csvRecord.get("Plants")));
+//                special.setPlants(new Plant(csvRecord.get("Plants")));
                 special.setLevel1(csvRecord.get("Level 1"));
                 special.setLevel2(csvRecord.get("Level 2"));
                 special.setLevel3(csvRecord.get("Level 3"));
