@@ -172,7 +172,7 @@
                 <div class="row">
                     <!-- Content Row -->
 
-                    <div class="card shadow col-lg-8">
+                    <div class="card shadow col-lg-12">
                         <div class="card-header py-12">
                             <h6 class="m-0 font-weight-bold text-primary">ADD</h6>
                         </div>
@@ -190,16 +190,48 @@
                                              style="width:100%">
                                         <div class="container">
                                             <h4><b th:text="${plant.get().plantName}"></b></h4>
-                                            <div class="col-lg-7" style="float: left;">
+                                            <div class="col-lg-4" style="float: left;">
                                                 <div class="form-group row">
-                                                    <label class="col-lg-2" id="lbl_cash_amount">Family</label>
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Family</label>
                                                     <span id="span_payment_amount_total"
                                                           style="background-color: #eaecf4;"
                                                           class="form-control col-lg-5"
                                                           th:text="${plant.get().family}"></span>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-lg-2" id="lbl_cash_amount">Usage</label>
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Usage</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().usage}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4" style="float: left;">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Activation Range</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().family}"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Attack direction</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().usage}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4" style="float: left;">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Shot Style</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().family}"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Acquisition</label>
                                                     <span id="span_payment_amount_total"
                                                           style="background-color: #eaecf4;"
                                                           class="form-control col-lg-5"
@@ -209,6 +241,119 @@
                                         </div>
                                     </div>
                                     <br>
+                                    <!-- ********************************************* Special ****************************************  -->
+                                    <div class="card">
+                                        <img th:src="@{templates/data/upload/plant.png}" alt="Avatar"
+                                             style="width:100%">
+                                        <div class="container">
+                                            <h4><b th:text="${plant.get().plantName}"></b></h4>
+                                            <div class="col-lg-4" style="float: left;">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Family</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().family}"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Usage</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().usage}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4" style="float: left;">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Activation Range</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().family}"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Attack direction</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().usage}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4" style="float: left;">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Shot Style</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().family}"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Acquisition</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().usage}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <!-- ********************************************* Damage ****************************************  -->
+                                    <div class="card">
+                                        <img th:src="@{templates/data/upload/plant.png}" alt="Avatar"
+                                             style="width:100%">
+                                        <div class="container">
+                                            <h4><b th:text="${plant.get().plantName}"></b></h4>
+                                            <div class="col-lg-4" style="float: left;">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Family</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().family}"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Usage</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().usage}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4" style="float: left;">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Activation Range</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().family}"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Attack direction</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().usage}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4" style="float: left;">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Shot Style</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().family}"></span>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-4" id="lbl_cash_amount">Acquisition</label>
+                                                    <span id="span_payment_amount_total"
+                                                          style="background-color: #eaecf4;"
+                                                          class="form-control col-lg-5"
+                                                          th:text="${plant.get().usage}"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div th:each="plant: ${plant}">
