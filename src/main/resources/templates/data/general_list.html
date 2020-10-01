@@ -194,8 +194,8 @@
                                     <td th:text="${data.shotStyle}"></td>
                                     <td th:text="${data.acquisition}"></td>
                                     <td class="center">&nbsp;&nbsp;&nbsp;
-                                        <a th:href="@{/general-data/update(plants=${data.plantName})}"><i
-                                                class="fa fa-edit"></i></a>
+                                        <a th:href="@{/general-data/update(plants=${data.plantName})}"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+                                        <a th:href="@{/filter-data/filter_view(id=${data.id})}"><i class="fa fa-filter"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>

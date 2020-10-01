@@ -21,7 +21,7 @@ public class GeneralDataController {
     @GetMapping("/list")
     public String findData(Model model){
         model.addAttribute("generals", generalRepository.findAll());
-        return "data/general";
+        return "data/general_list";
     }
 
     @GetMapping("/add")
