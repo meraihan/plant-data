@@ -32,14 +32,14 @@ public class InsertDamageDataTest {
     public static final String CSV_FILE_PATH = "./Plant Data - Damage.csv";
 
     @Test
-    @Ignore
+//    @Ignore
     public void readWriteFromCsv() throws Exception {
         List<Damage> specials = new ArrayList<>();
         FileInputStream fis = new FileInputStream(CSV_FILE_PATH);
         specials = csvToTutorials(fis);
         specials.stream().forEach(special -> {
             Damage saveDamage = new Damage();
-//            saveDamage.setPlants(special.getPlants());
+            saveDamage.setPlant(special.getPlant());
             saveDamage.setLevel1(special.getLevel1());
             saveDamage.setLevel2(special.getLevel2());
             saveDamage.setLevel3(special.getLevel3());
@@ -74,10 +74,12 @@ public class InsertDamageDataTest {
             List<Damage> damages = new ArrayList<Damage>();
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-
+            long i=1;
             for (CSVRecord csvRecord : csvRecords) {
                 Damage damage = new Damage();
-//                damage.setPlants(new Plant(csvRecord.get("Plants")));
+                Plant plant = new Plant();
+                plant.setId(i);
+                damage.setPlant(plant);
                 damage.setLevel1(csvRecord.get("Level 1"));
                 damage.setLevel2(csvRecord.get("Level 2"));
                 damage.setLevel3(csvRecord.get("Level 3"));
@@ -99,6 +101,7 @@ public class InsertDamageDataTest {
                 damage.setLevel19(csvRecord.get("Level 19"));
                 damage.setLevel20(csvRecord.get("Level 20"));
                 damages.add(damage);
+                i++;
             }
             return damages;
         } catch (IOException e) {

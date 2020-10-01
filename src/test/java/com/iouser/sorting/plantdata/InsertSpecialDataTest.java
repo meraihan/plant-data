@@ -33,14 +33,14 @@ public class InsertSpecialDataTest {
 
 
     @Test
-    @Ignore
+//    @Ignore
     public void readWriteFromCsv() throws Exception {
         List<Special> specials = new ArrayList<>();
         FileInputStream fis = new FileInputStream(CSV_FILE_PATH);
         specials = csvToTutorials(fis);
         specials.stream().forEach(special -> {
             Special saveSpecial = new Special();
-//            saveSpecial.setPlants(special.getPlants());
+            saveSpecial.setPlant(special.getPlant());
             saveSpecial.setLevel1(special.getLevel1());
             saveSpecial.setLevel2(special.getLevel2());
             saveSpecial.setLevel3(special.getLevel3());
@@ -75,10 +75,12 @@ public class InsertSpecialDataTest {
             List<Special> generals = new ArrayList<Special>();
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-
+            long i=1;
             for (CSVRecord csvRecord : csvRecords) {
                 Special special = new Special();
-//                special.setPlants(new Plant(csvRecord.get("Plants")));
+                Plant plant = new Plant();
+                plant.setId(i);
+                special.setPlant(plant);
                 special.setLevel1(csvRecord.get("Level 1"));
                 special.setLevel2(csvRecord.get("Level 2"));
                 special.setLevel3(csvRecord.get("Level 3"));
@@ -100,6 +102,7 @@ public class InsertSpecialDataTest {
                 special.setLevel19(csvRecord.get("Level 19"));
                 special.setLevel20(csvRecord.get("Level 20"));
                 generals.add(special);
+                i++;
             }
             return generals;
         } catch (IOException e) {

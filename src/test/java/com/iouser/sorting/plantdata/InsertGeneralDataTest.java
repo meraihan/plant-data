@@ -27,20 +27,20 @@ public class InsertGeneralDataTest {
     public static final String CSV_FILE_PATH = "./Plant Data - General.csv";
 
     @Test
-    @Ignore
+//    @Ignore
     public void readWriteFromCsv() throws Exception {
         List<Plant> generals = new ArrayList<>();
         FileInputStream fis = new FileInputStream(CSV_FILE_PATH);
         generals = csvToTutorials(fis);
         generals.stream().forEach(general -> {
-            Plant saveGeneral = new Plant();
-            saveGeneral.setPlantName(general.getPlantName());
-            saveGeneral.setFamily(general.getFamily());
-            saveGeneral.setUsage(general.getUsage());
-            saveGeneral.setActivationRange(general.getActivationRange());
-            saveGeneral.setAttackDirection(general.getAttackDirection());
-            saveGeneral.setShotStyle(general.getShotStyle());
-            saveGeneral.setAcquisition(general.getAcquisition());
+            Plant plant = new Plant();
+            plant.setPlantName(general.getPlantName());
+            plant.setFamily(general.getFamily());
+            plant.setUsage(general.getUsage());
+            plant.setActivationRange(general.getActivationRange());
+            plant.setAttackDirection(general.getAttackDirection());
+            plant.setShotStyle(general.getShotStyle());
+            plant.setAcquisition(general.getAcquisition());
             generalRepository.save(general);
         });
         log.info(String.valueOf(generals));
