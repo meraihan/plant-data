@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @Entity
@@ -27,4 +28,7 @@ public class User {
     private String role;
     @JoinColumn(name = "created_at")
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<FilterPlant> filterPlant;
 }
