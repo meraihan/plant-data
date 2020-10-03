@@ -262,164 +262,19 @@
                                     <br>
                                     <!-- ********************************************* Special ****************************************  -->
                                     <div class="card">
+                                        <h4><b>Special</b></h4>
                                         <div class="container-fluid">
-                                            <h4><b>Special</b></h4>
-                                            <div class="row">
-                                                <div class="col-lg-2 dbox">
+                                            <div class="form-group row" th:each="i : ${#numbers.sequence(5, 20,6)}">
+                                                <div class="col-lg-2 dbox" th:if="${i+j <= 20}" th:each="j : ${#numbers.sequence(0, 5)}">
                                                     <div class="card">
                                                         <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 5</strong></strong></label>
-                                                            <input name="slevel5" class="col-lg-2 d-lg-none chbox" type="checkbox">
+                                                            <label class="col-lg-10"><strong th:text="${'Level '+(i+j)}"></strong></label>
+                                                            <input name="slevel[]" vdata="level5" class="col-lg-2 d-lg-none chbox" type="checkbox">
                                                         </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level5}"></span>
+                                                        <span class="col-lg-12 form-group bg-white" th:text="${specialList.get(i-1+j).level}">ds</span>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 6</strong></label>
-                                                            <input name="slevel6" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level6}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 7</strong></label>
-                                                            <input name="slevel7" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level7}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 8</strong></label>
-                                                            <input name="slevel8" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level8}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 9</strong></label>
-                                                            <input name="slevel9" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level9}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 10</strong></label>
-                                                            <input name="slevel10" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level10}"></span>
-                                                    </div>
-                                                </div>
-
                                             </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 11</strong></label>
-                                                            <input name="slevel11" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level11}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 12</strong></label>
-                                                            <input name="slevel12" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level12}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 13</strong></label>
-                                                            <input name="slevel13" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level13}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 14</strong></label>
-                                                            <input name="slevel14" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level14}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 15</strong></label>
-                                                            <input name="slevel15" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level15}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 16</strong></label>
-                                                            <input name="slevel16" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level16}"></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 17</strong></label>
-                                                            <input name="slevel17" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level17}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 18</strong></label>
-                                                            <input name="slevel18" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level18}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 19</strong></label>
-                                                            <input name="slevel19" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level19}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 20</strong></label>
-                                                            <input name="slevel20" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${special.get().level20}"></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <br>
                                         </div>
                                     </div>
                                     <br>
@@ -427,162 +282,17 @@
                                     <div class="card">
                                         <div class="container-fluid">
                                             <h4><b>Damage</b></h4>
-                                            <div class="row">
-                                                <div class="col-lg-2 dbox">
+                                            <div class="form-group row" th:each="i : ${#numbers.sequence(5, 20,6)}">
+                                                <div class="col-lg-2 dbox" th:if="${i+j <= 20}" th:each="j : ${#numbers.sequence(0, 5)}">
                                                     <div class="card">
                                                         <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 5</strong></label>
-                                                            <input name="dlevel5" class="col-lg-2 d-lg-none chbox" type="checkbox">
+                                                            <label class="col-lg-10"><strong th:text="${'Level '+(i+j)}"></strong></label>
+                                                            <input name="dlevel[]" vdata="level5" class="col-lg-2 d-lg-none chbox" type="checkbox">
                                                         </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level5}"></span>
+                                                        <span class="col-lg-12 form-group bg-white" th:text="${damageList.get(i-1+j).level}">ds</span>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 6</strong></label>
-                                                            <input name="dlevel6" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level6}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 7</strong></label>
-                                                            <input name="dlevel7" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level7}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 8</strong></label>
-                                                            <input name="dlevel8" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level8}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 9</strong></label>
-                                                            <input name="dlevel9" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level9}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 10</strong></label>
-                                                            <input name="dlevel10" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level10}"></span>
-                                                    </div>
-                                                </div>
-
                                             </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 11</strong></label>
-                                                            <input name="dlevel11" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level11}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 12</strong></label>
-                                                            <input name="dlevel12" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level12}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 13</strong></label>
-                                                            <input name="dlevel13" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level13}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 14</strong></label>
-                                                            <input name="dlevel14" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level14}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 15</strong></label>
-                                                            <input name="dlevel15" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level15}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 16</strong></label>
-                                                            <input name="dlevel16" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level16}"></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 17</strong></label>
-                                                            <input name="dlevel17" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level17}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 18</strong></label>
-                                                            <input name="dlevel18" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level18}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 19</strong></label>
-                                                            <input name="dlevel19" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level19}"></span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 dbox">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong>Level 20</strong></label>
-                                                            <input name="dlevel20" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damage.get().level20}"></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <br>
                                         </div>
                                     </div>
                                     <br>
@@ -661,14 +371,15 @@
 <script>
     $('.dbox').click(function () {
         var checkbox = $(this).find('div').find('div').find('input');
-        var value = checkbox.prop('name');
+        // debugger;
+        var value = checkbox.attr('vdata');
         if (checkbox.prop("checked") == false) {
             checkbox.prop("checked", true);
             checkbox.prop("value", value);
             $(this).find('div').css('border-color', '#0b3ccc');
         } else {
             checkbox.prop("checked", false);
-            checkbox.prop("value", '');
+            checkbox.prop("value", null);
             $(this).find('div').css('border-color', '');
         }
     });

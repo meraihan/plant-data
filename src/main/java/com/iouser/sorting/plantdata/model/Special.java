@@ -15,6 +15,7 @@ public class Special implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "plant_id", nullable = false)
     private Plant plant;
+    private String level;
     private String level1;
     private String level2;
     private String level3;
