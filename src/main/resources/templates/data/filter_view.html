@@ -14,32 +14,31 @@
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-    <style>
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-            width: 100%;
-        }
+    <link rel="stylesheet" href="/css/carousal.css">
+    <link rel="stylesheet" href="/css/normalize.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+<!--    <style>-->
+<!--        .card {-->
+<!--            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);-->
+<!--            transition: 0.3s;-->
+<!--            width: 100%;-->
+<!--        }-->
 
-        .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(9, 0, 0, 0.2);
-        }
+<!--        .card:hover {-->
+<!--            box-shadow: 0 8px 16px 0 rgba(9, 0, 0, 0.2);-->
+<!--        }-->
 
-        .hbg-color {
-            border: #3b5998;
-        }
+<!--        .selected {-->
+<!--            border: #3b5998;-->
+<!--        }-->
 
-        .selected {
-            border: #3b5998;
-        }
-
-        .container {
-            padding: 2px 16px;
-        }
-    </style>
+<!--        .container {-->
+<!--            padding: 2px 16px;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 
 <body id="page-top">
@@ -193,108 +192,158 @@
                             </div>
                             <div class="container-fluid">
                                 <form action="/filter-data/save_filter_data" method="post">
-                                    <input type="hidden" name="plantId" th:value="${plant.get().id}">
-                                    <div class="card">
-                                        <div class="container-fluid">
-                                            <h4><b>General</b></h4>
-                                            <div class="row form-group ">
-                                                <div class="col-lg-2 border">
-                                                    <img class="form-group h-75 d-inline-block" th:src="@{templates/data/upload/plant.png}" alt="Plant Image">
-                                                    <strong><span th:text="${plant.get().plantName}"/></strong>
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    <div class="row form-group ">
-                                                        <div class="col-lg-4">
-                                                            <div class="row">
-                                                                <label class="col-lg-4">Family</label>
-                                                                <span style="background-color: #eaecf4;"
-                                                                      class="form-control col-lg-6"
-                                                                      th:text="${plant.get().family}"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="row">
-                                                                <label class="col-lg-4">Usage</label>
-                                                                <span style="background-color: #eaecf4;"
-                                                                      class="form-control col-lg-6"
-                                                                      th:text="${plant.get().usage}"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="row">
-                                                                <label class="col-lg-4">Activation Range</label>
-                                                                <span style="background-color: #eaecf4;"
-                                                                      class="form-control col-lg-6"
-                                                                      th:text="${plant.get().family}"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row form-group ">
-                                                        <div class="col-lg-4">
-                                                            <div class="row">
-                                                                <label class="col-lg-4">Attack Direction</label>
-                                                                <span style="background-color: #eaecf4;"
-                                                                      class="form-control col-lg-6"
-                                                                      th:text="${plant.get().attackDirection}"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="row">
-                                                                <label class="col-lg-4">Shot Style</label>
-                                                                <span style="background-color: #eaecf4;"
-                                                                      class="form-control col-lg-6"
-                                                                      th:text="${plant.get().shotStyle}"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="row">
-                                                                <label class="col-lg-4">Acquisition</label>
-                                                                <span style="background-color: #eaecf4;"
-                                                                      class="form-control col-lg-6"
-                                                                      th:text="${plant.get().acquisition}"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <input type="hidden" name="plantId" th:value="${filterPlant.plant.id}">
+<!--                                    <div class="card">-->
+<!--                                        <div class="container-fluid">-->
+<!--                                            <h4><b>General</b></h4>-->
+<!--                                            <div class="row form-group ">-->
+<!--                                                <div class="col-lg-2 border">-->
+<!--                                                    <img class="form-group h-75 d-inline-block" th:src="@{templates/data/upload/plant.png}" alt="Plant Image">-->
+<!--                                                    <strong><span th:text="${filterPlant.plant.plantName}"/></strong>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-lg-10">-->
+<!--                                                    <div class="row form-group ">-->
+<!--                                                        <div class="col-lg-4">-->
+<!--                                                            <div class="row">-->
+<!--                                                                <label class="col-lg-4">Family</label>-->
+<!--                                                                <span style="background-color: #eaecf4;"-->
+<!--                                                                      class="form-control col-lg-6"-->
+<!--                                                                      th:text="${filterPlant.plant.family}"></span>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-lg-4">-->
+<!--                                                            <div class="row">-->
+<!--                                                                <label class="col-lg-4">Usage</label>-->
+<!--                                                                <span style="background-color: #eaecf4;"-->
+<!--                                                                      class="form-control col-lg-6"-->
+<!--                                                                      th:text="${filterPlant.plant.usage}"></span>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-lg-4">-->
+<!--                                                            <div class="row">-->
+<!--                                                                <label class="col-lg-4">Activation Range</label>-->
+<!--                                                                <span style="background-color: #eaecf4;"-->
+<!--                                                                      class="form-control col-lg-6"-->
+<!--                                                                      th:text="${filterPlant.plant.family}"></span>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="row form-group ">-->
+<!--                                                        <div class="col-lg-4">-->
+<!--                                                            <div class="row">-->
+<!--                                                                <label class="col-lg-4">Attack Direction</label>-->
+<!--                                                                <span style="background-color: #eaecf4;"-->
+<!--                                                                      class="form-control col-lg-6"-->
+<!--                                                                      th:text="${filterPlant.plant.attackDirection}"></span>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-lg-4">-->
+<!--                                                            <div class="row">-->
+<!--                                                                <label class="col-lg-4">Shot Style</label>-->
+<!--                                                                <span style="background-color: #eaecf4;"-->
+<!--                                                                      class="form-control col-lg-6"-->
+<!--                                                                      th:text="${filterPlant.plant.shotStyle}"></span>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="col-lg-4">-->
+<!--                                                            <div class="row">-->
+<!--                                                                <label class="col-lg-4">Acquisition</label>-->
+<!--                                                                <span style="background-color: #eaecf4;"-->
+<!--                                                                      class="form-control col-lg-6"-->
+<!--                                                                      th:text="${filterPlant.plant.acquisition}"></span>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <br>
+                                    <!-- ********************************************* Card Carousal ****************************************  -->
+<!--                                    <div class="card">-->
+                                        <h4><b>Carousal</b></h4>
+                                        <div class="cr-container">
+                                            <div class="cr-card-stack">
+                                                <a class="cr-buttons prev" href="#"><</a>
+                                                <ul id="cr-ul" class="cr-card-list">
+                                                    <li class="cr-card" style="background: #c31432;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+                                                        <img src="https://svgshare.com/i/E90.svg" alt="Sun" class="card-list__image">
+                                                        <h3 class="card-list__text">Watch your way toward success as you excel above your competitors. </h3>
+                                                    </li>
+                                                    <li class="cr-card" style="background: #00416A;
+background: -webkit-linear-gradient(to right, #FFE000, #799F0C, #00416A);
+background: linear-gradient(to right, #FFE000, #799F0C, #00416A);
+">
+                                                        <img src="https://svgshare.com/i/E9H.svg" alt="Sun" class="card-list__image">
+                                                        <h3 class="card-list__text">Relax and chill, we've got you covered :) </h3>
+                                                    </li>
+                                                    <li class="cr-card" style="background: #1e3c72;
+background: -webkit-linear-gradient(to right, #2a5298, #1e3c72);
+background: linear-gradient(to right, #2a5298, #1e3c72);
+">
+                                                        <img src="https://svgshare.com/i/E86.svg" alt="Sun" class="card-list__image">
+                                                        <h3 class="card-list__text"> Boost your social networking presence</h3>
+                                                    </li>
+
+                                                    <li class="cr-card" style="background: #2C3E50;
+background: -webkit-linear-gradient(to right, #FD746C, #2C3E50);
+background: linear-gradient(to right, #FD746C, #2C3E50);
+">
+                                                        <img src="https://svgshare.com/i/E8Y.svg" alt="Sun" class="card-list__image">
+                                                        <h3 class="card-list__text"> Be at the top of your competitors</h3>
+                                                    </li>
+                                                    <li class="cr-card" style="background: #373B44;
+background: -webkit-linear-gradient(to right, #4286f4, #373B44);
+background: linear-gradient(to right, #4286f4, #373B44);
+">
+                                                        <img src="https://svgshare.com/i/E9z.svg" alt="Sun" class="card-list__image">
+                                                        <h3 class="card-list__text"> Create contents for your online courses</h3>
+                                                    </li>
+                                                </ul>
+                                                <a class="cr-buttons next" href="#">></a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <br>
+<!--                                    </div>-->
+
+
                                     <!-- ********************************************* Special ****************************************  -->
-                                    <div class="card">
-                                        <h4><b>Special</b></h4>
-                                        <div class="container-fluid">
-                                            <div class="form-group row" th:each="i : ${#numbers.sequence(5, 20,6)}">
-                                                <div class="col-lg-2 dbox" th:if="${i+j <= 20}" th:each="j : ${#numbers.sequence(0, 5)}">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong th:text="${'Level '+(i+j)}"></strong></label>
-                                                            <input name="slevel[]" vdata="level5" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${specialList.get(i-1+j).level}">ds</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
+                                    <!--                                    <div class="card">-->
+                                    <!--                                        <h4><b>Special</b></h4>-->
+                                    <!--                                        <div class="container-fluid">-->
+                                    <!--                                            <div class="form-group row" th:each="i : ${#numbers.sequence(5, 20,6)}">-->
+                                    <!--                                                <div class="col-lg-2 dbox" th:if="${i+j <= 20}" th:each="j : ${#numbers.sequence(0, 5)}">-->
+                                    <!--                                                    <div class="card">-->
+                                    <!--                                                        <div class="row col-lg-12">-->
+                                    <!--                                                            <label class="col-lg-10"><strong th:text="${'Level '+(i+j)}"></strong></label>-->
+                                    <!--                                                            <input th:name="${filterPlant.slevelList[i]}" vdata="level5" class="col-lg-2 d-lg-none chbox" type="checkbox">-->
+                                    <!--                                                        </div>-->
+                                    <!--                                                        <span class="col-lg-12 form-group bg-white" th:text="${filterPlant.slevelList.get(i-1+j).level}">ds</span>-->
+                                    <!--                                                    </div>-->
+                                    <!--                                                </div>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <br>-->
                                     <!-- ********************************************* Damage ****************************************  -->
-                                    <div class="card">
-                                        <div class="container-fluid">
-                                            <h4><b>Damage</b></h4>
-                                            <div class="form-group row" th:each="i : ${#numbers.sequence(5, 20,6)}">
-                                                <div class="col-lg-2 dbox" th:if="${i+j <= 20}" th:each="j : ${#numbers.sequence(0, 5)}">
-                                                    <div class="card">
-                                                        <div class="row col-lg-12">
-                                                            <label class="col-lg-10"><strong th:text="${'Level '+(i+j)}"></strong></label>
-                                                            <input name="dlevel[]" vdata="level5" class="col-lg-2 d-lg-none chbox" type="checkbox">
-                                                        </div>
-                                                        <span class="col-lg-12 form-group bg-white" th:text="${damageList.get(i-1+j).level}">ds</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!--                                    <div class="card">-->
+                                    <!--                                        <div class="container-fluid">-->
+                                    <!--                                            <h4><b>Damage</b></h4>-->
+                                    <!--                                            <div class="form-group row" th:each="i : ${#numbers.sequence(5, 20,6)}">-->
+                                    <!--                                                <div class="col-lg-2 dbox" th:if="${i+j <= 20}" th:each="j : ${#numbers.sequence(0, 5)}">-->
+                                    <!--                                                    <div class="card">-->
+                                    <!--                                                        <div class="row col-lg-12">-->
+                                    <!--                                                            <label class="col-lg-10"><strong th:text="${'Level '+(i+j)}"></strong></label>-->
+                                    <!--                                                            <input name="damage[].dlevel" vdata="level5" class="col-lg-2 d-lg-none chbox" type="checkbox">-->
+                                    <!--                                                        </div>-->
+                                    <!--                                                        <span class="col-lg-12 form-group bg-white" th:text="${damageList.get(i-1+j).level}">ds</span>-->
+                                    <!--                                                    </div>-->
+                                    <!--                                                </div>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
                                     <br>
                                     <div style="margin-left: 254px;">
 
@@ -368,6 +417,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="/js/sb-admin-2.min.js"></script>
+<script  src="/js/carousal.js"></script>
 <script>
     $('.dbox').click(function () {
         var checkbox = $(this).find('div').find('div').find('input');
@@ -379,7 +429,7 @@
             $(this).find('div').css('border-color', '#0b3ccc');
         } else {
             checkbox.prop("checked", false);
-            checkbox.prop("value", null);
+            checkbox.prop("value", "");
             $(this).find('div').css('border-color', '');
         }
     });

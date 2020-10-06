@@ -1,10 +1,12 @@
 package com.iouser.sorting.plantdata.model;
 
 
+import groovyjarjarpicocli.CommandLine;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -14,19 +16,21 @@ public class FilterPlant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="plant_id", nullable = false)
+    @Column(name = "plant_id", nullable = false)
     private Long plantId;
-    @Column(name="special_level", nullable = false)
+    @Column(name = "special_level", nullable = false)
     private String specialLevel;
-    @Column(name="damage_level", nullable = false)
+    @Column(name = "damage_level", nullable = false)
     private String damageLevel;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @Transient
-    private String[] slevel;
+    private Plant plant;
     @Transient
-    private String[] dlevel;
+    private List<Special> slevelList;
+    @Transient
+    private List<Damage> damageList;
 //    @Transient
 //    private String slevel3;
 //    @Transient
@@ -103,7 +107,6 @@ public class FilterPlant implements Serializable {
 //    private String dlevel19;
 //    @Transient
 //    private String dlevel20;
-
 
 
 }
