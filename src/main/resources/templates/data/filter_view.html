@@ -352,7 +352,6 @@
 
 <!-- Custom scripts for all pages-->
 <script src="/js/sb-admin-2.min.js"></script>
-<!--<script src="/js/carousal.js" th:inline="javascript"></script>-->
 <script type="text/javascript">
     var $card = $('.cr-card');
     var lastCard = $(".cr-card-list .cr-card").length - 1;
@@ -400,22 +399,6 @@
         }
     });
 
-
-    //
-    // $('.dbox').click(function () {
-    //     var checkbox = $(this).find('div').find('div').find('input');
-    //     // debugger;
-    //     var value = checkbox.attr('vdata');
-    //     if (checkbox.prop("checked") == false) {
-    //         checkbox.prop("checked", true);
-    //         checkbox.prop("value", value);
-    //         $(this).find('div').css('border-color', '#0b3ccc');
-    //     } else {
-    //         checkbox.prop("checked", false);
-    //         checkbox.prop("value", "");
-    //         $(this).find('div').css('border-color', '');
-    //     }
-    // });
 
     function getPlantIdList() {
         $.ajax({
