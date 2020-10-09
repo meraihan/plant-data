@@ -28,7 +28,7 @@ public class FilterPlant implements Serializable {
     @Transient
     private Plant plant;
     @Transient
-    private List<Special> slevelList;
+    private List<Special> specialList;
     @Transient
     private List<Damage> damageList;
 //    @Transient

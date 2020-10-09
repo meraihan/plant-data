@@ -113,9 +113,6 @@
                 <ul class="navbar-nav ml-auto">
 
 
-
-
-
                     <!-- Nav Item - Messages -->
 
 
@@ -157,11 +154,19 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
+                <!-- Page Heading -->
+                <h1 class="h3 mb-2 text-gray-800">Plant - General</h1>
+
+
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-8" style="text-align: right;">
-                        <h6 class="m-0 font-weight-bold text-primary"><a href="/filter-data/filter_view"><i class="fa fa-id-card" aria-hidden="true"
-                                                                                                            title="Card View" ></i></a></h6>
+                    <div class="card-header py-3">
+                        <div class="row">
+                            <h6 class="col-lg-11 m-0 font-weight-bold text-primary">Sorting the data</h6>
+                            <a th:href="@{/filter-data/filter_view}" alt="Switch To Card View" class="col-lg-1 m-0 font-weight-bold text-primary">
+                                <img src="/img/ic-card.jpg" width="48" height="48">
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -192,7 +197,7 @@
                                     <td th:text="${data.acquisition}"></td>
                                     <td class="center">&nbsp;&nbsp;&nbsp;
                                         <a th:href="@{/general-data/update(plants=${data.plantName})}"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-                                        <a th:href="@{/filter-data/filter_view(id=${data.id})}"><i class="fa fa-filter"></i></a>
+                                        <!--                                        <a th:href="@{/filter-data/filter_view(id=${data.id})}"><i class="fa fa-filter"></i></a>-->
                                     </td>
                                 </tr>
                                 </tbody>
