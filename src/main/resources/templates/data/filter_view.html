@@ -265,7 +265,7 @@
                                                 <h3>Special</h3>
                                                 <div class="row form-group" th:each="i :${#numbers.sequence( 5, 20, 1)} ">
                                                     <label class="col-lg-4" th:text="${'Level '+i}"></label>
-                                                    <span th:id="${'slevel'+i}" style="background-color: #eaecf4;" class="form-control col-lg-8"></span>
+                                                    <span th:id="${'slevel'+i}" style="background-color: #eaecf4;" class="form-control col-lg-8 slbox"></span>
                                                 </div>
 
                                             </div>
@@ -274,7 +274,7 @@
                                                 <h3>Damage</h3>
                                                 <div class="row form-group" th:each="i :${#numbers.sequence( 5, 20, 1)} ">
                                                     <label class="col-lg-5" th:text="${'Level '+i}"></label>
-                                                    <span th:id="${'dlevel'+i}" style="background-color: #eaecf4;" class="form-control col-lg-7"></span>
+                                                    <span th:id="${'dlevel'+i}" style="background-color: #eaecf4;" class="form-control col-lg-7 dlbox"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -356,6 +356,7 @@
     var $card = $('.cr-card');
     var lastCard = $(".cr-card-list .cr-card").length - 1;
     var plantIdArr = [];
+    var currentPlantId = 0;
     var i = 1;
     getPlantIdList();
 
@@ -418,6 +419,7 @@
     }
 
     function getPlantInfo(plantId, isNext) {
+        currentPlantId = plantId;
         $.ajax({
             type: 'GET',
             url: '/filter-data-ajax/plant_info/' + plantId,
@@ -439,7 +441,7 @@
                     $("li.transformPrev").find('h3').text(data.plant.plantName);
 
                 }
-                debugger;
+                // debugger;
                 // Special
                 for (var j = 5; j < data.specialList.length; j++) {
                     $('#slevel' + j).text(data.specialList[j].level);
@@ -456,6 +458,19 @@
 
         });
     }
+    var selectedPlantArr = new Array(2,2);
+    selectedPlantArr[currentPlantId][0] = '';
+    selectedPlantArr[currentPlantId][1] = '';
+    $('span.slbox').click(function () {
+        var levelId = $(this).attr('id').slice(6);
+        debugger;
+            // selectedPlantArr[currentPlantId][0].concat(levelId).concat('|');
+        if ($(this).hasClass('border border-primary')) {
+            $(this).removeClass('border border-primary');
+        } else {
+            $(this).addClass('border border-primary');
+        }
+    });
 </script>
 </body>
 

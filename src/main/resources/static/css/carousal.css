@@ -5,10 +5,10 @@ html {
   width: 100%;
   height: 390px;
   background-color: #fff;
-  padding: 115px 80px;
+  padding: 157px 0px;
 }
 .cr-container .cr-card-stack {
-  width: 500px;
+  width: 97%;
   height: 250px;
   position: absolute;
   margin: 20px auto;
