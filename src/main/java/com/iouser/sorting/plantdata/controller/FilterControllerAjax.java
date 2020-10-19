@@ -28,7 +28,7 @@ public class FilterControllerAjax {
     FilterPlantRepositoryWithJdbc filterPlantRepositoryWithJdbc;
 
 
-    @GetMapping(value = "/plant_info/{id}",  produces = { "application/json" })
+    @GetMapping(value = "/plant_info/{id}", produces = {"application/json"})
     public String list(@PathVariable() Long id) throws JsonProcessingException {
         Plant plant = filterPlantRepositoryWithJdbc.findById(id);
         FilterPlant filterPlant = new FilterPlant();
@@ -206,11 +206,21 @@ public class FilterControllerAjax {
         return json;
     }
 
-    @GetMapping(value = "/plant_id_list",  produces = { "application/json" })
+    @GetMapping(value = "/plant_id_list", produces = {"application/json"})
     public String list() throws JsonProcessingException {
         List<Long> plantIdList = filterPlantRepositoryWithJdbc.findAllPlantId();
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(plantIdList);
         return json;
+    }
+
+
+    @PostMapping(value = "/save-filter-config", produces = {"application/json"})
+    public String saveFilterConfig(@RequestBody String[] selectedPlantData) throws JsonProcessingException {
+        System.out.println(selectedPlantData[0]);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(selectedPlantData);
+        System.out.println(json);
+        return null;
     }
 }

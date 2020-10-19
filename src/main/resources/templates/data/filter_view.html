@@ -208,7 +208,7 @@
                                 </div>
                             </div>
                             <div class="container-fluid">
-                                <form action="/filter-data/save_filter_data" method="post">
+<!--                                <form action="/filter-data/save_filter_data" method="post">-->
                                     <input type="hidden" name="plantId">
                                     <div class="container-fluid">
                                         <div class="row">
@@ -284,10 +284,10 @@
 
                                         <label class="col-sm-6"></label>
                                         <a href="/general-data/list" class="btn btn-primary btn-user col-sm-2 alert-danger" style="float:left;margin-right: 10px;">Cancel</a>
-                                        <input style="float: left" type="submit" class="btn btn-primary btn-user btn-block col-sm-2" value="Submit"/>
+                                        <button id="btnSubmit" style="float: left" type="submit" class="btn btn-primary btn-user btn-block col-sm-2" value="Submit">Save</button>
 
                                     </div>
-                                </form>
+<!--                                </form>-->
                             </div>
                         </div>
                     </div>
@@ -358,12 +358,10 @@
     var currentPlantId = 0;
     var plantIdArr = [];
     var selectedPlantArr = [];
-        selectedPlantArr[0] = [];
-        selectedPlantArr[0]['sl'] = [];
-        selectedPlantArr[0]['dl'] = [];
+
     var selectedLevelArr = [];
-        // selectedLevelArr['sl'] = [];
-        // selectedLevelArr['dl'] = [];
+    // selectedLevelArr['sl'] = [];
+    // selectedLevelArr['dl'] = [];
     var i = 1;
     getPlantIdList();
 
@@ -379,15 +377,14 @@
         $('#cr-ul li').last().removeClass('transformPrev').addClass('transformThis').prev().addClass('activeNow');
         setTimeout(function () {
             prependList();
+            getPlantInfo(plantIdArr[i], true);
+            // drawSelected();
         }, 150);
-        getPlantInfo(plantIdArr[i], true);
         i++;
-        // selectedPlantArr[currentPlantId] = selectedLevelArr;
-        // console.log(selectedPlantArr);
+        $('span.slbox').removeClass('border border-primary');
     });
 
     $('.prev').click(function () {
-        debugger;
         if (i >= 2) {
             var appendToList = function () {
                 if ($('.cr-card').hasClass('activeNow')) {
@@ -400,15 +397,27 @@
             setTimeout(function () {
                 appendToList();
                 getPlantInfo(plantIdArr[i - 1], false);
+
             }, 150);
             // debugger;
             i--;
         } else {
             $('#cr-btn-prev').hide();
-
         }
     });
 
+    function drawSelected() {
+        $('span.slbox').removeClass('border border-primary');
+        $('span.dlbox').removeClass('border border-primary');
+        if (currentPlantId in selectedPlantArr) {
+            for (var i = 0; i < selectedPlantArr[currentPlantId][1].length; i++) {
+                $('#slevel' + selectedPlantArr[currentPlantId][1][i]).addClass('border border-primary');
+            }
+            for (var i = 0; i < selectedPlantArr[currentPlantId][2].length; i++) {
+                $('#dlevel' + selectedPlantArr[currentPlantId][2][i]).addClass('border border-primary');
+            }
+        }
+    }
 
     function getPlantIdList() {
         $.ajax({
@@ -459,6 +468,7 @@
                 for (var j = 5; j < data.damageList.length; j++) {
                     $('#dlevel' + j).text(data.damageList[j].level);
                 }
+                drawSelected();
             },
             error: function (err) {
                 alert('error!');
@@ -468,31 +478,73 @@
         });
     }
 
+    var index = 0;
     $('span.slbox').click(function () {
         var levelId = $(this).attr('id').slice(6);
-        debugger;
-        selectedPlantArr[currentPlantId]['sl'].push(levelId);
-        console.log(selectedPlantArr);
-        // alert(selectedPlantArr[0]['dl'][0]);
-            // selectedPlantArr[currentPlantId][0].concat(levelId).concat('|');
         if ($(this).hasClass('border border-primary')) {
             $(this).removeClass('border border-primary');
+            index = selectedPlantArr[currentPlantId][1].indexOf(levelId)
+            selectedPlantArr[currentPlantId][1].splice(index, 1);
         } else {
             $(this).addClass('border border-primary');
+            if (currentPlantId in selectedPlantArr) {
+                selectedPlantArr[currentPlantId][1].push(levelId);
+            } else {
+                // create empty array
+                selectedPlantArr[currentPlantId] = [];
+                selectedPlantArr[currentPlantId][0] = [];
+                selectedPlantArr[currentPlantId][1] = [];
+                selectedPlantArr[currentPlantId][2] = [];
+                // insert value into array
+                selectedPlantArr[currentPlantId][0].push(currentPlantId);
+                selectedPlantArr[currentPlantId][1].push(levelId);
+            }
         }
+        console.log(selectedPlantArr);
     });
     $('span.dlbox').click(function () {
         var levelId = $(this).attr('id').slice(6);
-        debugger;
-        selectedPlantArr[currentPlantId]['dl'].push(levelId);
-        console.log(selectedPlantArr);
-        // alert(selectedPlantArr[0]['dl'][0]);
-        // selectedPlantArr[currentPlantId][0].concat(levelId).concat('|');
+
         if ($(this).hasClass('border border-primary')) {
             $(this).removeClass('border border-primary');
+            index = selectedPlantArr[currentPlantId][2].indexOf(levelId)
+            selectedPlantArr[currentPlantId][2].splice(index, 1);
         } else {
             $(this).addClass('border border-primary');
+            if (currentPlantId in selectedPlantArr) {
+                selectedPlantArr[currentPlantId][2].push(levelId);
+            } else {
+                // create empty array
+                selectedPlantArr[currentPlantId] = [];
+                selectedPlantArr[currentPlantId][0] = [];
+                selectedPlantArr[currentPlantId][1] = [];
+                selectedPlantArr[currentPlantId][2] = [];
+                // insert value into array
+                selectedPlantArr[currentPlantId][0].push(currentPlantId);
+                selectedPlantArr[currentPlantId][2].push(levelId);
+            }
         }
+        console.log(selectedPlantArr);
+    });
+
+    $('#btnSubmit').click(function () {
+        debugger;
+        $.ajax({
+            type: 'POST',
+            url: '/filter-data-ajax/save-filter-config/',
+            // data:selectedPlantArr,
+            data: JSON.stringify(selectedPlantArr),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                alert(data);
+            },
+            error: function (err) {
+                alert('error!');
+                console.log(err); //prints error object to console
+            }
+
+        });
     });
 </script>
 </body>
