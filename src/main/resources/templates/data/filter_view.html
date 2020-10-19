@@ -355,8 +355,15 @@
 <script type="text/javascript">
     var $card = $('.cr-card');
     var lastCard = $(".cr-card-list .cr-card").length - 1;
-    var plantIdArr = [];
     var currentPlantId = 0;
+    var plantIdArr = [];
+    var selectedPlantArr = [];
+        selectedPlantArr[0] = [];
+        selectedPlantArr[0]['sl'] = [];
+        selectedPlantArr[0]['dl'] = [];
+    var selectedLevelArr = [];
+        // selectedLevelArr['sl'] = [];
+        // selectedLevelArr['dl'] = [];
     var i = 1;
     getPlantIdList();
 
@@ -375,6 +382,8 @@
         }, 150);
         getPlantInfo(plantIdArr[i], true);
         i++;
+        // selectedPlantArr[currentPlantId] = selectedLevelArr;
+        // console.log(selectedPlantArr);
     });
 
     $('.prev').click(function () {
@@ -458,22 +467,27 @@
 
         });
     }
-    var selectedPlantArr = [];
-    // selectedPlantArr[0] = [];
-    // selectedPlantArr[0]['dl'] = [];
-    // selectedPlantArr[0]['sl'] = [];
-    var selectedDLArr = [];
-    var selectedSLArr = [];
-    selectedDLArr[1] = 3;
-    selectedDLArr[4] = 7;
+
     $('span.slbox').click(function () {
         var levelId = $(this).attr('id').slice(6);
         debugger;
-        // selectedDLArr.push(levelId);
-        // selectedPlantArr[0]['dl'].push(levelId);
-        console.log(selectedDLArr);
+        selectedPlantArr[currentPlantId]['sl'].push(levelId);
+        console.log(selectedPlantArr);
         // alert(selectedPlantArr[0]['dl'][0]);
             // selectedPlantArr[currentPlantId][0].concat(levelId).concat('|');
+        if ($(this).hasClass('border border-primary')) {
+            $(this).removeClass('border border-primary');
+        } else {
+            $(this).addClass('border border-primary');
+        }
+    });
+    $('span.dlbox').click(function () {
+        var levelId = $(this).attr('id').slice(6);
+        debugger;
+        selectedPlantArr[currentPlantId]['dl'].push(levelId);
+        console.log(selectedPlantArr);
+        // alert(selectedPlantArr[0]['dl'][0]);
+        // selectedPlantArr[currentPlantId][0].concat(levelId).concat('|');
         if ($(this).hasClass('border border-primary')) {
             $(this).removeClass('border border-primary');
         } else {
