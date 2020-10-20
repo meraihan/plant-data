@@ -4,11 +4,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iouser.sorting.plantdata.model.*;
 import com.iouser.sorting.plantdata.repository.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -216,11 +221,33 @@ public class FilterControllerAjax {
 
 
     @PostMapping(value = "/save-filter-config", produces = {"application/json"})
-    public String saveFilterConfig(@RequestBody String[] selectedPlantData) throws JsonProcessingException {
-        System.out.println(selectedPlantData[0]);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(selectedPlantData);
-        System.out.println(json);
+    public String saveFilterConfig(@RequestBody String selectedPlantData) throws JSONException {
+        Integer plantId = 0;
+        String slevel = null;
+        String dlevel = null;
+        JSONArray jsonArray = new JSONArray(selectedPlantData);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            if (!jsonArray.get(i).equals(null)) {
+                plantId = (Integer) ((JSONArray) ((JSONArray) jsonArray.get(i)).get(0)).get(0);
+                slevel = parseLevel(((JSONArray) ((JSONArray) jsonArray.get(i)).get(1)));
+                dlevel = parseLevel(((JSONArray) ((JSONArray) jsonArray.get(i)).get(2)));
+            }
+        }
+        System.out.println(plantId);
+        System.out.println(slevel);
+        System.out.println(dlevel);
         return null;
+    }
+
+    private String parseLevel(JSONArray jsonArray) throws JSONException {
+        StringBuilder sb = new StringBuilder();
+        String levelId =null;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            if (!jsonArray.get(i).equals(null)) {
+                levelId = (String) jsonArray.get(i);
+                sb.append(levelId).append("|");
+            }
+        }
+        return sb.toString();
     }
 }
