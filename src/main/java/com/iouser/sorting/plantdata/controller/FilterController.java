@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iouser.sorting.plantdata.model.*;
 import com.iouser.sorting.plantdata.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,19 +42,15 @@ public class FilterController {
     }
 
 
-
-    @PostMapping("/save_filter_data")
-    public String insert(@ModelAttribute("filterPlant") FilterPlant filterPlant, final RedirectAttributes redirectAttributes) {
-        String specialLevel = "";
-        String damageLevel = "";
-        FilterPlant fp = new FilterPlant();
-//        User user = new User();
-//        user.setId(1L);
-//        fp.setUser(user);
-        fp.setPlantId(filterPlant.getPlantId());
-
-//        model.addAttribute("plant",filterPlantRepository.save(filterPlant));
-        redirectAttributes.addFlashAttribute("success", "General Data Added successful");
-        return "redirect:/general-data/list";
+    @GetMapping("/filter_plant_list")
+    public String filterPlantList(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username =null;
+        if (principal instanceof UserDetails){
+            username = ((UserDetails) principal).getUsername();
+        }
+        List<Plant> plantList = filterPlantRepositoryWithJdbc.findByUsername(username);
+        model.addAttribute("filterPlantList",plantList);
+        return "data/filter_plant_list";
     }
 }

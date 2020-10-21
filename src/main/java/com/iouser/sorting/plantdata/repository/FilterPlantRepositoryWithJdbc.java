@@ -52,8 +52,31 @@ public class FilterPlantRepositoryWithJdbc{
         }
     }
 
+    public List<Plant> findByUsername(String username) {
+        String query = "SELECT p.* FROM plant p\n" +
+                "JOIN filter_plant fp ON fp.`plant_id`=p.`id`\n" +
+                "WHERE fp.`username`=?";
+        try {
+            return jdbcTemplate.query(query,  new Object[]{username},(rs, rowNum) -> {
+                Plant plant = new Plant();
+                plant.setId(rs.getLong("id"));
+                plant.setAcquisition(rs.getString("acquisition"));
+                plant.setActivationRange(rs.getString("activation_range"));
+                plant.setAttackDirection(rs.getString("attack_direction"));
+                plant.setFamily(rs.getString("family"));
+                plant.setPlantName(rs.getString("plant_name"));
+                plant.setShotStyle(rs.getString("shot_style"));
+                plant.setUsage(rs.getString("usage"));
+                return plant;
+            });
+        } catch (DataAccessException de) {
+            de.printStackTrace();
+            log.error("Plant List found ");
+            return null;
+        }
+    }
     public Boolean deleteByUsername(String username) {
-        String query = "DELETE FROM filter_plant where user_id=?";
+        String query = "DELETE FROM filter_plant where username=?";
         try {
             return jdbcTemplate.update(query,username) > 0;
         } catch (DataAccessException de) {

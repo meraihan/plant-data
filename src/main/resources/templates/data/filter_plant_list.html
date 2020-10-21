@@ -189,7 +189,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="data,iterationStatus : ${generals}">
+                                <tr th:each="data,iterationStatus : ${filterPlantList}">
                                     <td th:text="${iterationStatus.count}">1</td>
                                     <td th:text="${data.plantName}"></td>
                                     <td th:text="${data.family}"></td>
