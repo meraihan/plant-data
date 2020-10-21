@@ -22,9 +22,11 @@ public class FilterPlant implements Serializable {
     private String specialLevel;
     @Column(name = "damage_level", nullable = false)
     private String damageLevel;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name = "username", nullable = false)
+    private String userName;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "user_id", nullable = true)
+//    private User user;
     @Transient
     private Plant plant;
     @Transient

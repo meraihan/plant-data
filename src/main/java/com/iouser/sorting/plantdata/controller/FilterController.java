@@ -46,9 +46,9 @@ public class FilterController {
         String specialLevel = "";
         String damageLevel = "";
         FilterPlant fp = new FilterPlant();
-        User user = new User();
-        user.setId(1L);
-        fp.setUser(user);
+//        User user = new User();
+//        user.setId(1L);
+//        fp.setUser(user);
         fp.setPlantId(filterPlant.getPlantId());
 
 //        model.addAttribute("plant",filterPlantRepository.save(filterPlant));

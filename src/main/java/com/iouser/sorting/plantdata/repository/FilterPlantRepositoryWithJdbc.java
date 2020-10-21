@@ -51,4 +51,15 @@ public class FilterPlantRepositoryWithJdbc{
             return null;
         }
     }
+
+    public Boolean deleteByUsername(String username) {
+        String query = "DELETE FROM filter_plant where user_id=?";
+        try {
+            return jdbcTemplate.update(query,username) > 0;
+        } catch (DataAccessException de) {
+            de.printStackTrace();
+            log.error("Plant List found ");
+            return Boolean.FALSE;
+        }
+    }
 }

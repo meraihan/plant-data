@@ -4,13 +4,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iouser.sorting.plantdata.model.*;
 import com.iouser.sorting.plantdata.repository.*;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.management.PlatformLoggingMXBean;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -221,27 +225,45 @@ public class FilterControllerAjax {
 
 
     @PostMapping(value = "/save-filter-config", produces = {"application/json"})
-    public String saveFilterConfig(@RequestBody String selectedPlantData) throws JSONException {
+    public Boolean saveFilterConfig(@RequestBody String selectedPlantData) throws JSONException {
         Integer plantId = 0;
         String slevel = null;
         String dlevel = null;
         JSONArray jsonArray = new JSONArray(selectedPlantData);
+        FilterPlant filterPlant = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username =null;
+        if (principal instanceof UserDetails){
+            username = ((UserDetails) principal).getUsername();
+        }
+        if (jsonArray.length()>0){
+            filterPlantRepositoryWithJdbc.deleteByUsername(username);
+        }
         for (int i = 0; i < jsonArray.length(); i++) {
             if (!jsonArray.get(i).equals(null)) {
                 plantId = (Integer) ((JSONArray) ((JSONArray) jsonArray.get(i)).get(0)).get(0);
                 slevel = parseLevel(((JSONArray) ((JSONArray) jsonArray.get(i)).get(1)));
                 dlevel = parseLevel(((JSONArray) ((JSONArray) jsonArray.get(i)).get(2)));
+                slevel = StringUtils.chop(slevel);
+                dlevel = StringUtils.chop(dlevel);
+                FilterPlant fp = new FilterPlant();
+                fp.setPlantId((long)plantId);
+                fp.setSpecialLevel(slevel);
+                fp.setDamageLevel(dlevel);
+                fp.setUserName(username);
+                filterPlant = filterPlantRepository.save(fp);
             }
         }
-        System.out.println(plantId);
-        System.out.println(slevel);
-        System.out.println(dlevel);
-        return null;
+        if (filterPlant != null) {
+            return Boolean.TRUE;
+        } else {
+            return Boolean.FALSE;
+        }
     }
 
     private String parseLevel(JSONArray jsonArray) throws JSONException {
         StringBuilder sb = new StringBuilder();
-        String levelId =null;
+        String levelId = null;
         for (int i = 0; i < jsonArray.length(); i++) {
             if (!jsonArray.get(i).equals(null)) {
                 levelId = (String) jsonArray.get(i);
