@@ -359,7 +359,7 @@
     // selectedLevelArr['dl'] = [];
     var i = 1;
     getPlantIdList();
-
+    getSelectedPlantList();
     $('.next').click(function () {
         $('#cr-btn-prev').show();
         var prependList = function () {
@@ -376,7 +376,7 @@
             // drawSelected();
         }, 150);
         i++;
-        $('span.slbox').removeClass('border border-primary');
+        $('span.slbox').removeClass('cr-border-color');
     });
 
     $('.prev').click(function () {
@@ -401,18 +401,6 @@
         }
     });
 
-    function drawSelected() {
-        $('span.slbox').removeClass('border border-primary');
-        $('span.dlbox').removeClass('border border-primary');
-        if (currentPlantId in selectedPlantArr) {
-            for (var i = 0; i < selectedPlantArr[currentPlantId][1].length; i++) {
-                $('#slevel' + selectedPlantArr[currentPlantId][1][i]).addClass('border border-primary');
-            }
-            for (var i = 0; i < selectedPlantArr[currentPlantId][2].length; i++) {
-                $('#dlevel' + selectedPlantArr[currentPlantId][2][i]).addClass('border border-primary');
-            }
-        }
-    }
 
     function getPlantIdList() {
         $.ajax({
@@ -472,16 +460,30 @@
 
         });
     }
+    function getSelectedPlantList() {
+        $.ajax({
+            type: 'GET',
+            url: '/filter-data-ajax/get_selected_plant_list',
+            success: function (data) {
+                debugger;
+            },
+            error: function (err) {
+                alert('error!');
+                console.log(err); //prints error object to console
+            }
+
+        });
+    }
 
     var index = 0;
     $('span.slbox').click(function () {
         var levelId = $(this).attr('id').slice(6);
-        if ($(this).hasClass('border border-primary')) {
-            $(this).removeClass('border border-primary');
+        if ($(this).hasClass('cr-border-color')) {
+            $(this).removeClass('cr-border-color');
             index = selectedPlantArr[currentPlantId][1].indexOf(levelId)
             selectedPlantArr[currentPlantId][1].splice(index, 1);
         } else {
-            $(this).addClass('border border-primary');
+            $(this).addClass('cr-border-color');
             if (currentPlantId in selectedPlantArr) {
                 selectedPlantArr[currentPlantId][1].push(levelId);
             } else {
@@ -500,12 +502,12 @@
     $('span.dlbox').click(function () {
         var levelId = $(this).attr('id').slice(6);
 
-        if ($(this).hasClass('border border-primary')) {
-            $(this).removeClass('border border-primary');
+        if ($(this).hasClass('cr-border-color')) {
+            $(this).removeClass('cr-border-color');
             index = selectedPlantArr[currentPlantId][2].indexOf(levelId)
             selectedPlantArr[currentPlantId][2].splice(index, 1);
         } else {
-            $(this).addClass('border border-primary');
+            $(this).addClass('cr-border-color');
             if (currentPlantId in selectedPlantArr) {
                 selectedPlantArr[currentPlantId][2].push(levelId);
             } else {
@@ -522,6 +524,18 @@
         console.log(selectedPlantArr);
     });
 
+    function drawSelected() {
+        $('span.slbox').removeClass('cr-border-color');
+        $('span.dlbox').removeClass('cr-border-color');
+        if (currentPlantId in selectedPlantArr) {
+            for (var i = 0; i < selectedPlantArr[currentPlantId][1].length; i++) {
+                $('#slevel' + selectedPlantArr[currentPlantId][1][i]).addClass('cr-border-color');
+            }
+            for (var i = 0; i < selectedPlantArr[currentPlantId][2].length; i++) {
+                $('#dlevel' + selectedPlantArr[currentPlantId][2][i]).addClass('cr-border-color');
+            }
+        }
+    }
     $('#btnSubmit').click(function () {
         debugger;
         $.ajax({
@@ -533,6 +547,8 @@
             dataType: "json",
             success: function (data) {
                 alert(data);
+                $('span.slbox').removeClass('cr-border-color');
+                $('span.dlbox').removeClass('cr-border-color');
             },
             error: function (err) {
                 alert('error!');

@@ -1,6 +1,7 @@
 package com.iouser.sorting.plantdata.repository;
 
 
+import com.iouser.sorting.plantdata.model.FilterPlant;
 import com.iouser.sorting.plantdata.model.Plant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,35 @@ public class FilterPlantRepositoryWithJdbc{
             });
         } catch (DataAccessException de) {
             de.printStackTrace();
-            log.error("Plant List found ");
+            log.error("Plant List not found ");
+            return null;
+        }
+    }
+
+    public List<FilterPlant> findFilterPlantByUsername(String username) {
+        String query = "SELECT * FROM filter_plant WHERE `username`=?";
+        try {
+            return jdbcTemplate.query(query,  new Object[]{username},(rs, rowNum) -> {
+                FilterPlant fp = new FilterPlant();
+                fp.setId(rs.getLong("id"));
+                fp.setPlantId(rs.getLong("plant_id"));
+                fp.setSpecialLevel(rs.getString("special_level"));
+                fp.setDamageLevel(rs.getString("damage_level"));
+                return fp;
+            });
+        } catch (DataAccessException de) {
+            de.printStackTrace();
+            log.error("Plant List not found ");
+            return null;
+        }
+    }
+    public Long findPlantMaxIdByUsername(String username) {
+        String query = "SELECT max(plant_id) plant_id FROM filter_plant WHERE `username`=?";
+        try {
+            return jdbcTemplate.queryForObject(query,  new Object[]{username},Long.class);
+        } catch (DataAccessException de) {
+            de.printStackTrace();
+            log.error("Plant List not found ");
             return null;
         }
     }
@@ -81,7 +110,7 @@ public class FilterPlantRepositoryWithJdbc{
             return jdbcTemplate.update(query,username) > 0;
         } catch (DataAccessException de) {
             de.printStackTrace();
-            log.error("Plant List found ");
+            log.error("Plant List not found ");
             return Boolean.FALSE;
         }
     }

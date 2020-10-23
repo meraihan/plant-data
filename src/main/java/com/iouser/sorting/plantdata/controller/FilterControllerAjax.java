@@ -11,14 +11,12 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.management.PlatformLoggingMXBean;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 
 @RestController
@@ -261,6 +259,40 @@ public class FilterControllerAjax {
         }
     }
 
+    @GetMapping("/get_selected_plant_list")
+    public String getSelectedPlantList(Model model) throws JsonProcessingException {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = null;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        }
+        List<FilterPlant> filterPlantList = filterPlantRepositoryWithJdbc.findFilterPlantByUsername(username);
+        Long plantMaxId = filterPlantRepositoryWithJdbc.findPlantMaxIdByUsername(username);
+        List plantList = new ArrayList<>();
+        for (int i = 0; i <= plantMaxId; i++) {
+            plantList.add(i);
+        }
+        Map<Integer, List<Long>> plantMap = null;
+        int plantId;
+        for (FilterPlant fp : filterPlantList) {
+            plantMap = new HashMap<>();
+            List<Long> plantIdList = new ArrayList<>();
+            plantId = fp.getPlantId().intValue();
+            plantIdList.add(fp.getPlantId());
+            plantMap.put(0, plantIdList);
+            if (fp.getSpecialLevel() != null) {
+                plantMap.put(1, convertStringToList(fp.getSpecialLevel())); // Special Level
+            }
+            if (fp.getDamageLevel() != null) {
+                plantMap.put(2, convertStringToList(fp.getDamageLevel())); // Damage Level
+            }
+            plantList.set(plantId, plantMap);
+        }
+        ObjectMapper om = new ObjectMapper();
+        String jsonData = om.writeValueAsString(plantList);
+        return jsonData;
+    }
+
     private String parseLevel(JSONArray jsonArray) throws JSONException {
         StringBuilder sb = new StringBuilder();
         String levelId = null;
@@ -272,4 +304,16 @@ public class FilterControllerAjax {
         }
         return sb.toString();
     }
+
+    private List<Long> convertStringToList(String level) {
+        String[] levelArr = level.split("|");
+        List<Long> levelList = new ArrayList<>();
+        for (int i = 0; i < levelArr.length; i++) {
+            if (!levelArr[i].equals("|")) {
+                levelList.add(Long.valueOf(levelArr[i]));
+            }
+        }
+        return levelList;
+    }
+
 }

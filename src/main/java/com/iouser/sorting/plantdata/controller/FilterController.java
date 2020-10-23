@@ -10,11 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -24,20 +21,15 @@ public class FilterController {
     @Autowired
     GeneralRepository generalRepository;
     @Autowired
-    SpecialRepository specialRepository;
-    @Autowired
-    DamageRepository damageRepository;
-    @Autowired
-    FilterPlantRepository filterPlantRepository;
-    @Autowired
     FilterPlantRepositoryWithJdbc filterPlantRepositoryWithJdbc;
+
     @GetMapping("/list")
     public String list(Model model) {
         model.addAttribute("plantList", generalRepository.findAll());
         return "data/filter_view";
     }
     @GetMapping("/filter_view")
-    public String filterView(Model model) throws JsonProcessingException {
+    public String filterView(Model model) {
         return "data/filter_view";
     }
 
