@@ -215,7 +215,10 @@ public class FilterControllerAjax {
 
     @GetMapping(value = "/plant_id_list", produces = {"application/json"})
     public String list() throws JsonProcessingException {
-        List<Long> plantIdList = filterPlantRepositoryWithJdbc.findAllPlantId();
+        List<Long> plantIdList = new ArrayList<>();
+        plantIdList.add(0L);
+        List<Long> plantIdList2 = filterPlantRepositoryWithJdbc.findAllPlantId();
+        plantIdList.addAll(plantIdList2);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(plantIdList);
         return json;
@@ -238,8 +241,9 @@ public class FilterControllerAjax {
             filterPlantRepositoryWithJdbc.deleteByUsername(username);
         }
         for (int i = 0; i < jsonArray.length(); i++) {
-            if (!jsonArray.get(i).equals(null)) {
-                plantId = (Integer) ((JSONArray) ((JSONArray) jsonArray.get(i)).get(0)).get(0);
+            if (!jsonArray.get(i).equals(null) && !(jsonArray.get(i) instanceof Integer)) {
+//            if (!jsonArray.get(i).equals(0)) {
+                plantId = Integer.valueOf((String)((JSONArray) ((JSONArray) jsonArray.get(i)).get(0)).get(0));
                 slevel = parseLevel(((JSONArray) ((JSONArray) jsonArray.get(i)).get(1)));
                 dlevel = parseLevel(((JSONArray) ((JSONArray) jsonArray.get(i)).get(2)));
                 slevel = StringUtils.chop(slevel);
@@ -269,24 +273,27 @@ public class FilterControllerAjax {
         List<FilterPlant> filterPlantList = filterPlantRepositoryWithJdbc.findFilterPlantByUsername(username);
         Long plantMaxId = filterPlantRepositoryWithJdbc.findPlantMaxIdByUsername(username);
         List plantList = new ArrayList<>();
-        for (int i = 0; i <= plantMaxId; i++) {
-            plantList.add(i);
-        }
-        Map<Integer, List<Long>> plantMap = null;
-        int plantId;
-        for (FilterPlant fp : filterPlantList) {
-            plantMap = new HashMap<>();
-            List<Long> plantIdList = new ArrayList<>();
-            plantId = fp.getPlantId().intValue();
-            plantIdList.add(fp.getPlantId());
-            plantMap.put(0, plantIdList);
-            if (fp.getSpecialLevel() != null) {
-                plantMap.put(1, convertStringToList(fp.getSpecialLevel())); // Special Level
+        if (plantMaxId != null) {
+            for (int i = 0; i <= plantMaxId; i++) {
+                plantList.add(i);
             }
-            if (fp.getDamageLevel() != null) {
-                plantMap.put(2, convertStringToList(fp.getDamageLevel())); // Damage Level
+            Map<Integer, List<String>> plantMap = null;
+            List<List<String>> plantDataList = null;
+            int plantId;
+            for (FilterPlant fp : filterPlantList) {
+                plantDataList = new ArrayList<>();
+                List<String> plantIdList = new ArrayList<>();
+                plantId = fp.getPlantId().intValue();
+                plantIdList.add(String.valueOf(fp.getPlantId()));
+                plantDataList.add(plantIdList);
+                if (fp.getSpecialLevel() != null) {
+                    plantDataList.add(convertStringToList(fp.getSpecialLevel())); // Special Level
+                }
+                if (fp.getDamageLevel() != null) {
+                    plantDataList.add(convertStringToList(fp.getDamageLevel())); // Damage Level
+                }
+                plantList.set(plantId, plantDataList);
             }
-            plantList.set(plantId, plantMap);
         }
         ObjectMapper om = new ObjectMapper();
         String jsonData = om.writeValueAsString(plantList);
@@ -305,12 +312,12 @@ public class FilterControllerAjax {
         return sb.toString();
     }
 
-    private List<Long> convertStringToList(String level) {
+    private List<String> convertStringToList(String level) {
         String[] levelArr = level.split("|");
-        List<Long> levelList = new ArrayList<>();
+        List<String> levelList = new ArrayList<>();
         for (int i = 0; i < levelArr.length; i++) {
             if (!levelArr[i].equals("|")) {
-                levelList.add(Long.valueOf(levelArr[i]));
+                levelList.add(levelArr[i]);
             }
         }
         return levelList;

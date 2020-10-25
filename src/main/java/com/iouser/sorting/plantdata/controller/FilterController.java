@@ -28,8 +28,9 @@ public class FilterController {
         model.addAttribute("plantList", generalRepository.findAll());
         return "data/filter_view";
     }
-    @GetMapping("/filter_view")
-    public String filterView(Model model) {
+    @GetMapping("/filter_view/{isFilter}")
+    public String filterView(@PathVariable("isFilter") Boolean isfilter,  Model model) {
+        model.addAttribute("isFilter",isfilter);
         return "data/filter_view";
     }
 

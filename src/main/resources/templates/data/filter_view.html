@@ -183,110 +183,117 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-<!--                <div class="row">-->
-                    <!-- Content Row -->
+                <!--                <div class="row">-->
+                <!-- Content Row -->
 
-                    <div class="card shadow col-lg-12">
-                        <div class="card-header py-12">
-                            <div class="row col-lg-12">
-                                <h6 class="col-lg-11 m-0 font-weight-bold text-primary">Plant Details</h6>
-                                <a th:href="@{/general-data/list}" alt="Switch To Card View" class="col-lg-1 m-0 font-weight-bold text-primary float-right">
+                <div class="card shadow col-lg-12">
+                    <div class="card-header py-3">
+                        <div class="row col-lg-12">
+                            <h6 class="col-lg-11 m-0 font-weight-bold text-primary">Plant Details</h6>
+                            <div th:if="${isFilter}" style="padding-left: 110px;" class="col-lg-1 m-0 font-weight-bold text-primary float-right">
+                                <a th:href="@{/filter-data/filter_plant_list}" alt="Switch To Table View">
+                                    <img src="/img/ic-table.png" width="32" height="32">
+                                </a>
+                            </div>
+                            <div th:unless="${isFilter}" style="padding-left: 110px;" class="col-lg-1 m-0 font-weight-bold text-primary float-right">
+                                <a th:href="@{/general-data/list}" alt="Switch To Table View">
                                     <img src="/img/ic-table.png" width="32" height="32">
                                 </a>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="dataTable_filter" class="dataTables_filter" style="float: right;">
-                                    </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="dataTable_filter" class="dataTables_filter" style="float: right;">
                                 </div>
                             </div>
+                        </div>
+                        <div class="container-fluid">
+                            <!--                                <form action="/filter-data/save_filter_data" method="post">-->
+                            <input type="hidden" name="plantId">
                             <div class="container-fluid">
-<!--                                <form action="/filter-data/save_filter_data" method="post">-->
-                                    <input type="hidden" name="plantId">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <label class="col-lg-8">Plant Name</label>
-                                                <span id="plant_name" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
-                                                <label class="col-lg-8">Family</label>
-                                                <span id="family" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
-                                                <label class="col-lg-8">Usage</label>
-                                                <span id="usage" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
-                                                <label class="col-lg-8">Activation Range</label>
-                                                <span id="activation_range" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
-                                                <label class="col-lg-8">Attack Direction</label>
-                                                <span id="attack_direction" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
-                                                <label class="col-lg-8">Shot Style</label>
-                                                <span id="shot_style" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
-                                                <label class="col-lg-8">Acquisition</label>
-                                                <span id="acquisition" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
-                                            </div>
-                                            <!-- ************************* Card Stack ********************* -->
-                                            <div class="col-lg-5">
-                                                <div class="cr-container">
-                                                    <div class="cr-card-stack">
-                                                        <a id="cr-btn-prev" class="cr-buttons prev" href="#"><</a>
-                                                        <ul id="cr-ul" class="cr-card-list">
-                                                            <li class="cr-card cr-card-5">
-                                                                <img src="/img/image-5.png" alt="Sun" class="card-list__image">
-                                                                <h3 plantId="5" class="card-list__text">Plant 5</h3>
-                                                            </li>
-                                                            <li class="cr-card cr-card-4">
-                                                                <img src="/img/image-4.png" alt="Sun" class="card-list__image">
-                                                                <h3 plantId="4" class="card-list__text">Plant 4</h3>
-                                                            </li>
-                                                            <li class="cr-card cr-card-3">
-                                                                <img src="/img/image-3.png" alt="Sun" class="card-list__image">
-                                                                <h3 plantId="3" class="card-list__text"> Plant 3</h3>
-                                                            </li>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <label class="col-lg-8">Plant Name</label>
+                                        <span id="plant_name" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
+                                        <label class="col-lg-8">Family</label>
+                                        <span id="family" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
+                                        <label class="col-lg-8">Usage</label>
+                                        <span id="usage" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
+                                        <label class="col-lg-8">Activation Range</label>
+                                        <span id="activation_range" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
+                                        <label class="col-lg-8">Attack Direction</label>
+                                        <span id="attack_direction" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
+                                        <label class="col-lg-8">Shot Style</label>
+                                        <span id="shot_style" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
+                                        <label class="col-lg-8">Acquisition</label>
+                                        <span id="acquisition" style="background-color: #eaecf4;" class="form-control col-lg-12"></span>
+                                    </div>
+                                    <!-- ************************* Card Stack ********************* -->
+                                    <div class="col-lg-5">
+                                        <div class="cr-container">
+                                            <div class="cr-card-stack">
+                                                <a id="cr-btn-prev" class="cr-buttons prev" href="#"><</a>
+                                                <ul id="cr-ul" class="cr-card-list">
+                                                    <li class="cr-card cr-card-5">
+                                                        <img src="/img/image-5.png" alt="Sun" class="card-list__image">
+                                                        <h3 plantId="5" class="card-list__text">Plant 5</h3>
+                                                    </li>
+                                                    <li class="cr-card cr-card-4">
+                                                        <img src="/img/image-4.png" alt="Sun" class="card-list__image">
+                                                        <h3 plantId="4" class="card-list__text">Plant 4</h3>
+                                                    </li>
+                                                    <li class="cr-card cr-card-3">
+                                                        <img src="/img/image-3.png" alt="Sun" class="card-list__image">
+                                                        <h3 plantId="3" class="card-list__text"> Plant 3</h3>
+                                                    </li>
 
-                                                            <li class="cr-card cr-card-2">
-                                                                <img src="/img/image-2.png" alt="Sun" class="card-list__image">
-                                                                <h3 plantId="2" class="card-list__text"> Plant 2</h3>
-                                                            </li>
-                                                            <li class="cr-card cr-card-1">
-                                                                <img src="/img/image-1.png" alt="Sun" class="card-list__image">
-                                                                <h3 plantId="1" class="card-list__text"> Plant 1</h3>
-                                                            </li>
-                                                        </ul>
-                                                        <a id="cr-btn-next" class="cr-buttons next" href="#">></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- ************************* Special ********************* -->
-                                            <div class="col-lg-3">
-                                                <h3>Special</h3>
-                                                <div class="row form-group" th:each="i :${#numbers.sequence( 5, 20, 1)} ">
-                                                    <label class="col-lg-4" th:text="${'Level '+i}"></label>
-                                                    <span th:id="${'slevel'+i}" style="background-color: #eaecf4;" class="form-control col-lg-8 slbox"></span>
-                                                </div>
-
-                                            </div>
-                                            <!-- ************************* Damage ********************* -->
-                                            <div class="col-lg-2">
-                                                <h3>Damage</h3>
-                                                <div class="row form-group" th:each="i :${#numbers.sequence( 5, 20, 1)} ">
-                                                    <label class="col-lg-5" th:text="${'Level '+i}"></label>
-                                                    <span th:id="${'dlevel'+i}" style="background-color: #eaecf4;" class="form-control col-lg-7 dlbox"></span>
-                                                </div>
+                                                    <li class="cr-card cr-card-2">
+                                                        <img src="/img/image-2.png" alt="Sun" class="card-list__image">
+                                                        <h3 plantId="2" class="card-list__text"> Plant 2</h3>
+                                                    </li>
+                                                    <li class="cr-card cr-card-1">
+                                                        <img src="/img/image-1.png" alt="Sun" class="card-list__image">
+                                                        <h3 plantId="1" class="card-list__text"> Plant 1</h3>
+                                                    </li>
+                                                </ul>
+                                                <a id="cr-btn-next" class="cr-buttons next" href="#">></a>
                                             </div>
                                         </div>
                                     </div>
-                                    <br>
-                                    <div style="margin-left: 254px;">
-
-                                        <label class="col-sm-6"></label>
-                                        <a href="/general-data/list" class="btn btn-primary btn-user col-sm-2 alert-danger" style="float:left;margin-right: 10px;">Cancel</a>
-                                        <button id="btnSubmit" style="float: left" type="submit" class="btn btn-primary btn-user btn-block col-sm-2" value="Submit">Save</button>
+                                    <!-- ************************* Special ********************* -->
+                                    <div class="col-lg-3">
+                                        <h3>Special</h3>
+                                        <div class="row form-group" th:each="i :${#numbers.sequence( 5, 20, 1)} ">
+                                            <label class="col-lg-4" th:text="${'Level '+i}"></label>
+                                            <span th:id="${'slevel'+i}" style="background-color: #eaecf4;" class="form-control col-lg-8 slbox"></span>
+                                        </div>
 
                                     </div>
-<!--                                </form>-->
+                                    <!-- ************************* Damage ********************* -->
+                                    <div class="col-lg-2">
+                                        <h3>Damage</h3>
+                                        <div class="row form-group" th:each="i :${#numbers.sequence( 5, 20, 1)} ">
+                                            <label class="col-lg-5" th:text="${'Level '+i}"></label>
+                                            <span th:id="${'dlevel'+i}" style="background-color: #eaecf4;" class="form-control col-lg-7 dlbox"></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <br>
+                            <div style="margin-left: 254px;">
+
+                                <label class="col-sm-6"></label>
+                                <a href="/general-data/list" class="btn btn-primary btn-user col-sm-2 alert-danger" style="float:left;margin-right: 10px;">Cancel</a>
+                                <button id="btnSubmit" style="float: left" type="submit" class="btn btn-primary btn-user btn-block col-sm-2" value="Submit">Save</button>
+
+                            </div>
+                            <!--                                </form>-->
                         </div>
                     </div>
-<!--                </div>-->
+                </div>
+                <!--                </div>-->
 
                 <!-- Content Row -->
 
@@ -353,10 +360,6 @@
     var currentPlantId = 0;
     var plantIdArr = [];
     var selectedPlantArr = [];
-
-    var selectedLevelArr = [];
-    // selectedLevelArr['sl'] = [];
-    // selectedLevelArr['dl'] = [];
     var i = 1;
     getPlantIdList();
     getSelectedPlantList();
@@ -372,15 +375,17 @@
         $('#cr-ul li').last().removeClass('transformPrev').addClass('transformThis').prev().addClass('activeNow');
         setTimeout(function () {
             prependList();
+            debugger;
+            i++;
             getPlantInfo(plantIdArr[i], true);
             // drawSelected();
         }, 150);
-        i++;
         $('span.slbox').removeClass('cr-border-color');
     });
 
     $('.prev').click(function () {
         if (i >= 2) {
+            debugger;
             var appendToList = function () {
                 if ($('.cr-card').hasClass('activeNow')) {
                     var $slicedCard = $('.cr-card').slice(0, 1).addClass('transformPrev');
@@ -391,11 +396,12 @@
             $('#cr-ul li').removeClass('transformPrev').last().addClass('activeNow').prevAll().removeClass('activeNow');
             setTimeout(function () {
                 appendToList();
-                getPlantInfo(plantIdArr[i - 1], false);
+                i--;
+                getPlantInfo(plantIdArr[i], false);
+                debugger;
 
             }, 150);
             // debugger;
-            i--;
         } else {
             $('#cr-btn-prev').hide();
         }
@@ -407,9 +413,8 @@
             type: 'GET',
             url: '/filter-data-ajax/plant_id_list',
             success: function (data) {
-                // debugger;
                 plantIdArr = data;
-                getPlantInfo(plantIdArr[0], true);
+                getPlantInfo(plantIdArr[1], true);
             },
             error: function (err) {
                 alert('error!');
@@ -444,12 +449,13 @@
                 }
                 // debugger;
                 // Special
-                for (var j = 5; j < data.specialList.length; j++) {
-                    $('#slevel' + j).text(data.specialList[j].level);
+                for (var j = 5; j <= data.specialList.length; j++) {
+                    debugger;
+                    $('#slevel' + j).text(data.specialList[j - 1].level);
                 }
                 // Damage
-                for (var j = 5; j < data.damageList.length; j++) {
-                    $('#dlevel' + j).text(data.damageList[j].level);
+                for (var j = 5; j <= data.damageList.length; j++) {
+                    $('#dlevel' + j).text(data.damageList[j - 1].level);
                 }
                 drawSelected();
             },
@@ -460,12 +466,13 @@
 
         });
     }
+
     function getSelectedPlantList() {
         $.ajax({
             type: 'GET',
             url: '/filter-data-ajax/get_selected_plant_list',
             success: function (data) {
-                debugger;
+                selectedPlantArr = JSON.parse(data);
             },
             error: function (err) {
                 alert('error!');
@@ -478,6 +485,7 @@
     var index = 0;
     $('span.slbox').click(function () {
         var levelId = $(this).attr('id').slice(6);
+        // debugger;
         if ($(this).hasClass('cr-border-color')) {
             $(this).removeClass('cr-border-color');
             index = selectedPlantArr[currentPlantId][1].indexOf(levelId)
@@ -493,7 +501,7 @@
                 selectedPlantArr[currentPlantId][1] = [];
                 selectedPlantArr[currentPlantId][2] = [];
                 // insert value into array
-                selectedPlantArr[currentPlantId][0].push(currentPlantId);
+                selectedPlantArr[currentPlantId][0].push(currentPlantId.toString());
                 selectedPlantArr[currentPlantId][1].push(levelId);
             }
         }
@@ -517,7 +525,7 @@
                 selectedPlantArr[currentPlantId][1] = [];
                 selectedPlantArr[currentPlantId][2] = [];
                 // insert value into array
-                selectedPlantArr[currentPlantId][0].push(currentPlantId);
+                selectedPlantArr[currentPlantId][0].push(currentPlantId.toString());
                 selectedPlantArr[currentPlantId][2].push(levelId);
             }
         }
@@ -536,6 +544,7 @@
             }
         }
     }
+
     $('#btnSubmit').click(function () {
         debugger;
         $.ajax({
@@ -546,12 +555,12 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                alert(data);
+                alert('Data Saved Successfully.');
                 $('span.slbox').removeClass('cr-border-color');
                 $('span.dlbox').removeClass('cr-border-color');
             },
             error: function (err) {
-                alert('error!');
+                alert("Save Failed !!");
                 console.log(err); //prints error object to console
             }
 
