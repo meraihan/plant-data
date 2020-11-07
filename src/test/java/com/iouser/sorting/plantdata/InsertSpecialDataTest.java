@@ -33,7 +33,7 @@ public class InsertSpecialDataTest {
 
 
     @Test
-//    @Ignore
+    @Ignore
     public void readWriteFromCsv() throws Exception {
         List<Special> specials = new ArrayList<>();
         FileInputStream fis = new FileInputStream(CSV_FILE_PATH);

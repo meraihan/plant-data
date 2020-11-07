@@ -32,7 +32,7 @@ public class InsertDamageDataTest {
     public static final String CSV_FILE_PATH = "./Plant Data - Damage.csv";
 
     @Test
-//    @Ignore
+    @Ignore
     public void readWriteFromCsv() throws Exception {
         List<Damage> specials = new ArrayList<>();
         FileInputStream fis = new FileInputStream(CSV_FILE_PATH);
